@@ -1,29 +1,33 @@
-<?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Livreurs extends Model
+class Livreur extends Model
 {
     protected $table = 'livreurs';
     protected $primaryKey = 'idlivreur';
     public $timestamps = false;
 
-    protected $fillable = ['nom', 'prenom', 'telephone', 'idzone', 'idvehicule'];
+    protected $fillable = [
+        'nom',
+        'prenom',
+        'telephone',
+        'idzone',
+        'idvehicule',
+    ];
 
     public function zone()
     {
-        return $this->belongsTo(Zones::class, 'idzone', 'idzone');
+        return $this->belongsTo(Zone::class, 'idzone', 'idzone');
     }
 
     public function vehicule()
     {
-        return $this->belongsTo(Vehicules::class, 'idvehicule', 'idvehicule');
+        return $this->belongsTo(Vehicule::class, 'idvehicule', 'idvehicule');
     }
 
     public function courses()
     {
-        return $this->hasMany(Courses::class, 'idlivreur', 'idlivreur');
+        return $this->hasMany(Course::class, 'idlivreur', 'idlivreur');
     }
 }
