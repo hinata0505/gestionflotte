@@ -1,8 +1,20 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+// nuxt.config.ts
 export default defineNuxtConfig({
+  compatibilityDate: '2024-11-01',
+  devtools: { enabled: true },
   modules: [
     '@nuxt/content',
+    '@nuxtjs/tailwindcss'
   ],
-  devtools: { enabled: true },
-  compatibilityDate: '2024-04-03',
+  content: {
+    database: {
+      type: 'sqlite',
+      filename: ':memory:'
+    }
+  },
+  runtimeConfig: {
+    public: {
+      apiBase: 'http://127.0.0.1:8000/api'
+    }
+  }
 })
